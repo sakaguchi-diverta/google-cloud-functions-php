@@ -1,0 +1,14 @@
+{
+  "require": {
+    "php": ">= 7.4",
+    "google/cloud-functions-framework": "^1.1",
+    "vlucas/phpdotenv": "^5.5",
+    "google/cloud-storage": "^1.30"
+  },
+  "scripts": {
+    "start": [
+      "Composer\\Config::disableProcessTimeout",
+      "FUNCTION_TARGET=uploadPrivateFile php -S localhost:${PORT:-8080} vendor/google/cloud-functions-framework/router.php"
+    ]
+  }
+}
