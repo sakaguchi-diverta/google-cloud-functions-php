@@ -8,9 +8,11 @@ FunctionsFramework::http('uploadPrivateFile', 'uploadPrivateFile');
 
 function uploadPrivateFile(ServerRequestInterface $request): string
 {
-    // Load local .env
-    $dotenv = Dotenv::createMutable(__DIR__);
-    $dotenv->safeLoad();
+    if (is_file(__DIR__.'/.env')) {
+        // Load .env file (for local environment)
+        $dotenv = Dotenv::createMutable(__DIR__);
+        $dotenv->safeLoad();
+    }
 
     try {
         $storage = new StorageClient([
